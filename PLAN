@@ -1,0 +1,274 @@
+1. Introdução
+O projeto consiste no desenvolvimento de um jogo 2D em Godot, onde o jogador controla um pinguim que atravessa diferentes cenários em sequência.
+ Ao longo do percurso, o pinguim enfrenta esqueletos como inimigos, e deve avançar o máximo possível para completar o jogo.
+A cada progresso, o jogo muda de cenário automaticamente, criando uma sensação de mundo contínuo e crescente dificuldade.
+
+2. Requisitos do Projeto
+2.1 Requisitos Funcionais
+O jogo deverá permitir:
+✔ Movimento do pinguim: andar, saltar, nadar e deslizar
+ ✔ Mudança automática de cenários conforme a distância percorrida
+ ✔ Inimigos (esqueletos) com comportamento simples
+ ✔ Sistema de pontuação baseado na distância percorrida
+ ✔ Sistema de vidas/saúde
+ ✔ HUD com informação do cenário atual
+ ✔ Deteção de colisões com inimigos e obstáculos
+ ✔ Transições suaves entre cenários
+
+2.2 Requisitos Não Funcionais
+O jogo deverá:
+✔ Manter 60 FPS
+ ✔ Ter transições sem falhas entre cenários
+ ✔ Ser intuitivo e simples de jogar
+ ✔ Ter boa otimização de memória e recursos
+ ✔ Ter código modular para facilitar expansão
+
+2.3 Modelo de Utilizador
+Persona
+Nome: João
+ Idade: 15 anos
+ Perfil: Jogador casual
+ Objetivo: Avançar o máximo possível e completar todos os cenários
+
+Cenário de Utilização
+O jogador inicia o jogo e controla o pinguim.
+ Conforme ele avança, os cenários mudam automaticamente, aumentando a dificuldade.
+ O objetivo é sobreviver e percorrer a maior distância possível.
+
+3. Arquitetura e Planeamento Técnico (Godot)
+
+3.1 GDD (Game Design Document) Simplificado
+Conceito do Jogo
+Jogo 2D de progressão contínua, onde o jogador controla um pinguim que atravessa vários cenários enfrentando esqueletos.
+
+Mecânicas do Jogador
+Movimentos:
+Andar (esquerda/direita)
+
+
+Saltar
+
+
+Nadar (quando entra em água)
+
+
+Deslizar (quando pressiona “abaixar” + correr)
+
+
+
+Inimigos (Esqueletos)
+Movimentação simples
+
+
+Perseguição leve ou patrulha
+
+
+Ao tocar no pinguim, causa dano
+
+
+
+Cenários
+Cada cenário possui:
+Fundo diferente
+
+
+Obstáculos diferentes
+
+
+Inimigos diferentes
+
+
+Dificuldade crescente
+
+
+
+3.2 Arquitetura do Jogo (Godot)
+Organização de Cenas
+Main.tscn – Cena principal
+
+
+Player.tscn – Pinguim
+
+
+EnvironmentManager.tscn – Gestão de cenários
+
+
+Skeleton.tscn – Inimigo
+
+
+Water.tscn – Água (para nadar)
+
+
+UI.tscn – HUD e menus
+
+
+
+Scripts Principais
+Player.gd
+
+
+Movimento (andar, saltar, nadar, deslizar)
+
+
+Colisões
+
+
+Vida
+
+
+EnvironmentManager.gd
+
+
+Transição automática entre cenários
+
+
+Spawners de inimigos e obstáculos
+
+
+Skeleton.gd
+
+
+IA simples (patrulha ou perseguição)
+
+
+GameManager.gd
+
+
+Pontuação
+
+
+Estado do jogo (game over)
+
+
+
+3.3 Lógica de Mudança de Cenários
+A mudança de cenário ocorre com base na posição X do jogador (distância percorrida).
+ Exemplo:
+Distância
+Cenário
+0 – 500
+Cenário 1
+500 – 1000
+Cenário 2
+1000 – 1500
+Cenário 3
+
+Quando o jogador atinge um limite, o EnvironmentManager altera:
+Fundo
+
+
+Obstáculos
+
+
+Tipo de inimigos
+
+
+Música/efeitos
+
+
+
+3.4 Diagramas UML (Simplificados)
+Casos de Uso
+Jogar
+
+
+Saltar
+
+
+Nadar
+
+
+Deslizar
+
+
+Combater esqueletos
+
+
+Mudar de cenário
+
+
+Diagrama de Classes (Simplificado)
+Player
+
+
+vida
+
+
+movimento
+
+
+EnvironmentManager
+
+
+cenárioAtual
+
+
+limites
+
+
+Skeleton
+
+
+comportamento
+
+
+GameManager
+
+
+pontuação
+
+
+estado
+
+
+
+3.5 Wireframes (HUD)
+HUD com:
+Vidas
+
+
+Distância percorrida
+
+
+Nome do cenário atual
+
+
+
+3.6 Requisitos Técnicos
+Engine: Godot 2D
+
+
+Linguagem: GDScript
+
+
+Plataforma: PC (Windows)
+
+
+Resolução: 1280x720
+
+
+FPS: 60
+
+
+
+4. Plano de Testes
+Testes a Realizar
+Testes de movimento do pinguim (andar, saltar, nadar, deslizar)
+
+
+Testes de colisão com esqueletos
+
+
+Testes de transição entre cenários
+
+
+Testes de desempenho (FPS)
+
+
+Testes de continuidade do jogo sem falhas
+
+
+
+5. Conclusão
+O jogo apresenta um conceito simples mas robusto, com progressão contínua entre cenários e mecânicas fáceis de controlar.
+ A Godot é a engine mais adequada para este tipo de jogo 2D devido à sua performance e facilidade de implementação de cenários e físicas.
